@@ -19,34 +19,41 @@
 
   *{ box-sizing: border-box; }
 
+  html, body{
+    height: 100%;
+    overflow: hidden;
+  }
+
   body{
     margin:0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background: var(--cream);
     color: var(--dark);
     -webkit-font-smoothing: antialiased;
+    overscroll-behavior: none;
   }
 
   .page{
     position: relative;
     max-width: 480px;
     margin: 0 auto;
-    min-height: 100vh;
+    height: 100vh;
+    height: 100dvh;
     background: #fff;
     box-shadow: var(--shadow);
     overflow: hidden;
-    padding-bottom: 92px;
+    padding-bottom: 78px;
   }
 
   .watermark-row{
     display:flex;
     justify-content:center;
-    padding: 22px 24px 4px;
+    padding: 8px 24px 2px;
   }
 
   .watermark-row img{
-    width: 210px;
-    max-width: 60%;
+    width: 130px;
+    max-width: 50%;
     opacity: 0.18;
     pointer-events: none;
     user-select: none;
@@ -55,22 +62,22 @@
   /* Header / cover */
   .cover{
     background: var(--gradient);
-    height: 160px;
+    height: 110px;
     position: relative;
   }
 
   .avatar-wrap{
     position: absolute;
     left: 50%;
-    bottom: -52px;
+    bottom: -40px;
     transform: translateX(-50%);
   }
 
   .avatar{
-    width: 104px;
-    height: 104px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    border: 4px solid #fff;
+    border: 3px solid #fff;
     background: var(--dark);
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -88,7 +95,7 @@
 
   .avatar-fallback{
     color:#fff;
-    font-size: 36px;
+    font-size: 28px;
     font-weight: 700;
     letter-spacing: 1px;
   }
@@ -96,27 +103,21 @@
   /* Identity */
   .identity{
     text-align:center;
-    padding: 64px 24px 8px;
+    padding: 46px 24px 4px;
   }
 
   .name{
-    font-size: 24px;
+    font-size: 19px;
     font-weight: 800;
-    margin: 0 0 4px;
+    margin: 0 0 2px;
     color: var(--dark);
   }
 
   .title{
-    font-size: 15px;
+    font-size: 12.5px;
     font-weight: 600;
-    margin: 0 0 2px;
-    color: var(--red);
-  }
-
-  .company{
-    font-size: 14px;
-    color: #6b6663;
     margin: 0;
+    color: var(--red);
   }
 
   /* Save contact CTA */
@@ -124,14 +125,14 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:8px;
-    margin: 20px 24px 0;
-    padding: 14px 18px;
+    gap:6px;
+    margin: 12px 24px 0;
+    padding: 10px 16px;
     border-radius: var(--radius);
     background: var(--gradient);
     color:#fff;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 13.5px;
     border: none;
     width: calc(100% - 48px);
     cursor: pointer;
@@ -142,22 +143,26 @@
 
   /* Section */
   .section{
-    padding: 20px 24px 0;
+    padding: 10px 24px 0;
   }
 
   .section h2{
-    font-size: 13px;
+    font-size: 10.5px;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: #9a9490;
-    margin: 0 0 8px;
+    margin: 0 0 3px;
   }
 
   .section p{
-    font-size: 14.5px;
-    line-height: 1.55;
+    font-size: 12.5px;
+    line-height: 1.4;
     color: var(--dark);
     margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   /* Bottom navigation bar (engagement CTAs) */
@@ -172,7 +177,7 @@
     background: #fff;
     border-top: 1px solid #f0e9e2;
     box-shadow: 0 -8px 24px rgba(27,24,21,0.10);
-    padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom));
     z-index: 20;
   }
 
@@ -181,17 +186,17 @@
     display:flex;
     flex-direction: column;
     align-items:center;
-    gap: 4px;
+    gap: 3px;
     text-decoration:none;
     color: var(--dark);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-    padding: 4px 2px;
+    padding: 3px 2px;
   }
 
   .nav-item .icon{
-    width: 38px;
-    height: 38px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
     background: var(--gradient);
     display:flex;
@@ -199,7 +204,7 @@
     justify-content:center;
   }
 
-  .nav-item .icon svg{ width:17px; height:17px; fill:#fff; }
+  .nav-item .icon svg{ width:15px; height:15px; fill:#fff; }
 
   .nav-item:active{ opacity: 0.7; }
 
@@ -207,13 +212,15 @@
   .socials{
     display:flex;
     justify-content:center;
-    gap: 14px;
-    padding: 22px 24px 0;
+    gap: 12px;
+    padding: 10px 24px 0;
   }
 
+  .socials:empty{ display:none; }
+
   .social{
-    width: 46px;
-    height: 46px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     background: var(--dark);
     display:flex;
@@ -222,14 +229,7 @@
     text-decoration:none;
   }
 
-  .social svg{ width:20px; height:20px; fill: var(--cream); }
-
-  footer{
-    text-align:center;
-    padding: 28px 24px 32px;
-    font-size: 12px;
-    color: #b3aca6;
-  }
+  .social svg{ width:16px; height:16px; fill: var(--cream); }
 
 </style>
 </head>
@@ -275,8 +275,6 @@
     <!-- populated by JS from CONFIG -->
   </div>
 
-  <footer>Tap a button below to connect</footer>
-
 </div>
 
 <nav class="bottom-nav" id="bottomNav">
@@ -297,7 +295,7 @@ const CONFIG = {
   aboutCompany: "KeRaeva is an AI-powered healthcare staffing platform connecting top-tier talent with leading Canadian healthcare institutions, built by Medfaster Healthtech Private Limited (India) and Medfaster Heath Tech Inc. (Canada).",
 
   phone: "+14039196824",
-  email: "support@keraeva.com",
+  email: "ceo@keraeva.com",
   whatsapp: "14039196824",
   website: "https://keraeva.com/",
 
@@ -324,10 +322,10 @@ document.getElementById('avatarFallback').textContent =
 document.getElementById('photoImg').src = CONFIG.photo;
 
 const icons = {
-  phone: '<path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>',
-  email: '<path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/>',
-  whatsapp: '<path d="M16.04 2C8.78 2 2.9 7.88 2.9 15.14c0 2.52.7 4.88 1.93 6.9L2 22l4.13-1.08a13.1 13.1 0 0 0 5.91 1.43h.01c7.26 0 13.14-5.88 13.14-13.14C25.19 7.95 23.3 2 16.04 2zm0 23.04ZM16.04 2"/><path d="M16.05 4.2c6.03 0 10.94 4.9 10.94 10.94 0 6.03-4.9 10.94-10.94 10.94a10.9 10.9 0 0 1-5.55-1.52l-.4-.23-3.9 1.02 1.04-3.8-.25-.39a10.9 10.9 0 0 1-1.67-5.82c0-6.04 4.9-10.94 10.93-10.94zm6.04 13.92c-.33-.17-1.96-.97-2.27-1.08-.3-.11-.52-.17-.74.17-.22.33-.85 1.08-1.04 1.3-.19.22-.38.25-.71.08-1.93-.96-3.2-1.72-4.47-3.9-.34-.58.34-.54.97-1.8.11-.22.06-.41-.06-.58-.11-.17-.74-1.78-1.02-2.44-.27-.64-.55-.56-.74-.57h-.63c-.22 0-.57.08-.87.41-.3.33-1.14 1.12-1.14 2.72 0 1.6 1.17 3.15 1.33 3.37.17.22 2.27 3.46 5.5 4.72 2.73 1.07 3.28.86 3.87.8.6-.06 1.96-.8 2.24-1.58.27-.77.27-1.43.19-1.58-.08-.14-.3-.22-.63-.39z"/>',
-  website: '<path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.93 6h-2.95a15.65 15.65 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a8.1 8.1 0 0 1 0-4h3.38a16.3 16.3 0 0 0 0 4H4.26zm.81 2h2.95c.32 1.25.78 2.45 1.38 3.56A8.03 8.03 0 0 1 5.07 16zm2.95-8H5.07a8.03 8.03 0 0 1 4.33-3.56A15.65 15.65 0 0 0 8.02 8zM12 19.96a15.65 15.65 0 0 1-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.4 14H9.6a14.3 14.3 0 0 1 0-4h4.8a14.3 14.3 0 0 1 0 4zm.93 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.36 14a16.3 16.3 0 0 0 0-4h3.38a8.1 8.1 0 0 1 0 4h-3.38z"/>'
+  phone: { viewBox: '0 0 24 24', path: '<path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>' },
+  email: { viewBox: '0 0 24 24', path: '<path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5z"/>' },
+  whatsapp: { viewBox: '0 0 448 512', path: '<path d="M380.9 97.1C339 55.1 283.2 32 224.1 32c-122.9 0-223 100.1-223 223 0 39.4 10.3 78 29.9 111.9L1 480l125.2-32.8c32.6 17.8 69.4 27.2 106.9 27.2h.1c122.9 0 223-100.1 223-223 0-59.1-23.1-114.7-65.2-156.5zM224.1 438.4h-.1c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-67.9-4.4-7c-18.5-29.4-28.3-63.3-28.3-98.2 0-101.7 82.8-184.4 184.6-184.4 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 54 81.2 54 130.5 0 101.8-82.8 184.4-184.4 184.4zm101.4-138.2c-5.5-2.8-32.7-16.1-37.8-18-5.1-1.9-8.8-2.8-12.5 2.8s-14.4 18-17.6 21.7c-3.2 3.7-6.5 4.1-12 1.4-32.6-16.3-54-29-75.5-65.8-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.8-.6-9.6-1.5-2.8-13.4-32.3-18.4-44.2-4.9-11.6-9.9-10-13.6-10.2-3.5-.2-7.5-.2-11.5-.2-4 0-10.5 1.5-16 7.4-5.5 5.9-21 20.6-21 50.2 0 29.6 21.5 58.2 24.5 62.2 3 4 41.9 64 101.5 87.2 50.6 19.7 60.9 15.8 71.9 14.8 11-1 32.7-13.4 37.3-26.4 4.6-13 4.6-24.1 3.2-26.4-1.4-2.3-5-3.7-10.5-6.5z"/>' },
+  website: { viewBox: '0 0 24 24', path: '<path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.93 6h-2.95a15.65 15.65 0 0 0-1.38-3.56A8.03 8.03 0 0 1 18.93 8zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14a8.1 8.1 0 0 1 0-4h3.38a16.3 16.3 0 0 0 0 4H4.26zm.81 2h2.95c.32 1.25.78 2.45 1.38 3.56A8.03 8.03 0 0 1 5.07 16zm2.95-8H5.07a8.03 8.03 0 0 1 4.33-3.56A15.65 15.65 0 0 0 8.02 8zM12 19.96a15.65 15.65 0 0 1-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.4 14H9.6a14.3 14.3 0 0 1 0-4h4.8a14.3 14.3 0 0 1 0 4zm.93 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95a8.03 8.03 0 0 1-4.33 3.56zM16.36 14a16.3 16.3 0 0 0 0-4h3.38a8.1 8.1 0 0 1 0 4h-3.38z"/>' }
 };
 
 const socialIcons = {
@@ -342,7 +340,7 @@ function buildAction(href, label, iconKey){
   a.className = 'nav-item';
   a.href = href;
   if (iconKey === 'website') a.target = '_blank';
-  a.innerHTML = `<span class="icon"><svg viewBox="0 0 24 24">${icons[iconKey]}</svg></span><span>${label}</span>`;
+  a.innerHTML = `<span class="icon"><svg viewBox="${icons[iconKey].viewBox}">${icons[iconKey].path}</svg></span><span>${label}</span>`;
   return a;
 }
 
