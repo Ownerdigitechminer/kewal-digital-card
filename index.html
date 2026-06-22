@@ -38,20 +38,16 @@
     padding-bottom: 92px;
   }
 
-  .page > *:not(.watermark){
-    position: relative;
-    z-index: 1;
+  .watermark-row{
+    display:flex;
+    justify-content:center;
+    padding: 22px 24px 4px;
   }
 
-  .watermark{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 75%;
-    max-width: 340px;
-    transform: translate(-50%, -50%);
-    opacity: 0.08;
-    z-index: 0;
+  .watermark-row img{
+    width: 210px;
+    max-width: 60%;
+    opacity: 0.18;
     pointer-events: none;
     user-select: none;
   }
@@ -241,8 +237,6 @@
 
 <div class="page">
 
-  <img class="watermark" src="logo-watermark.svg" alt="">
-
   <div class="cover">
     <div class="avatar-wrap">
       <div class="avatar">
@@ -266,6 +260,10 @@
   <div class="section">
     <h2>About Me</h2>
     <p id="aboutMeText">Write a short, friendly intro about yourself here — your background, what you do, and what makes you stand out.</p>
+  </div>
+
+  <div class="watermark-row">
+    <img src="logo-watermark.svg" alt="KeRaeva logo">
   </div>
 
   <div class="section">
