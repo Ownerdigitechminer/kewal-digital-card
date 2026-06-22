@@ -28,6 +28,7 @@
   }
 
   .page{
+    position: relative;
     max-width: 480px;
     margin: 0 auto;
     min-height: 100vh;
@@ -35,6 +36,24 @@
     box-shadow: var(--shadow);
     overflow: hidden;
     padding-bottom: 92px;
+  }
+
+  .page > *:not(.watermark){
+    position: relative;
+    z-index: 1;
+  }
+
+  .watermark{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 75%;
+    max-width: 340px;
+    transform: translate(-50%, -50%);
+    opacity: 0.08;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
   }
 
   /* Header / cover */
@@ -221,6 +240,8 @@
 <body>
 
 <div class="page">
+
+  <img class="watermark" src="logo-watermark.svg" alt="">
 
   <div class="cover">
     <div class="avatar-wrap">
