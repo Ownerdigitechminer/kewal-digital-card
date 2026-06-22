@@ -34,6 +34,7 @@
     background: #fff;
     box-shadow: var(--shadow);
     overflow: hidden;
+    padding-bottom: 92px;
   }
 
   /* Header / cover */
@@ -144,32 +145,38 @@
     margin: 0;
   }
 
-  /* Action grid */
-  .actions{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    padding: 20px 24px 0;
+  /* Bottom navigation bar (engagement CTAs) */
+  .bottom-nav{
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    display:flex;
+    background: #fff;
+    border-top: 1px solid #f0e9e2;
+    box-shadow: 0 -8px 24px rgba(27,24,21,0.10);
+    padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
+    z-index: 20;
   }
 
-  .action{
+  .nav-item{
+    flex: 1;
     display:flex;
+    flex-direction: column;
     align-items:center;
-    gap:10px;
-    padding: 13px 12px;
-    border-radius: 14px;
-    background: var(--cream);
-    border: 1px solid #f0e9e2;
+    gap: 4px;
     text-decoration:none;
     color: var(--dark);
-    font-size: 13.5px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 2px;
   }
 
-  .action .icon{
-    width: 34px;
-    height: 34px;
-    flex-shrink:0;
+  .nav-item .icon{
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     background: var(--gradient);
     display:flex;
@@ -177,7 +184,9 @@
     justify-content:center;
   }
 
-  .action .icon svg{ width:17px; height:17px; fill:#fff; }
+  .nav-item .icon svg{ width:17px; height:17px; fill:#fff; }
+
+  .nav-item:active{ opacity: 0.7; }
 
   /* Socials */
   .socials{
@@ -207,9 +216,6 @@
     color: #b3aca6;
   }
 
-  @media (max-width: 380px){
-    .actions{ grid-template-columns: 1fr; }
-  }
 </style>
 </head>
 <body>
@@ -247,17 +253,17 @@
     <p id="aboutCompanyText">A one or two line description of your company — what it does and the value it delivers to customers.</p>
   </div>
 
-  <div class="actions" id="actionsGrid">
-    <!-- populated by JS from CONFIG -->
-  </div>
-
   <div class="socials" id="socialsRow">
     <!-- populated by JS from CONFIG -->
   </div>
 
-  <footer>Tap any button above to connect</footer>
+  <footer>Tap a button below to connect</footer>
 
 </div>
+
+<nav class="bottom-nav" id="bottomNav">
+  <!-- populated by JS from CONFIG -->
+</nav>
 
 <script>
 /* ============================================================
@@ -316,18 +322,18 @@ const socialIcons = {
 
 function buildAction(href, label, iconKey){
   const a = document.createElement('a');
-  a.className = 'action';
+  a.className = 'nav-item';
   a.href = href;
   if (iconKey === 'website') a.target = '_blank';
   a.innerHTML = `<span class="icon"><svg viewBox="0 0 24 24">${icons[iconKey]}</svg></span><span>${label}</span>`;
   return a;
 }
 
-const grid = document.getElementById('actionsGrid');
-if (CONFIG.phone) grid.appendChild(buildAction(`tel:${CONFIG.phone}`, 'Call', 'phone'));
-if (CONFIG.email) grid.appendChild(buildAction(`mailto:${CONFIG.email}`, 'Email', 'email'));
-if (CONFIG.whatsapp) grid.appendChild(buildAction(`https://wa.me/${CONFIG.whatsapp}`, 'WhatsApp', 'whatsapp'));
-if (CONFIG.website) grid.appendChild(buildAction(CONFIG.website, 'Website', 'website'));
+const bottomNav = document.getElementById('bottomNav');
+if (CONFIG.phone) bottomNav.appendChild(buildAction(`tel:${CONFIG.phone}`, 'Call', 'phone'));
+if (CONFIG.whatsapp) bottomNav.appendChild(buildAction(`https://wa.me/${CONFIG.whatsapp}`, 'WhatsApp', 'whatsapp'));
+if (CONFIG.email) bottomNav.appendChild(buildAction(`mailto:${CONFIG.email}`, 'Email', 'email'));
+if (CONFIG.website) bottomNav.appendChild(buildAction(CONFIG.website, 'Website', 'website'));
 
 const socialsRow = document.getElementById('socialsRow');
 Object.keys(CONFIG.social).forEach(key => {
