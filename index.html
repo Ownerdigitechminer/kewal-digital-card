@@ -235,7 +235,6 @@
   <div class="identity">
     <h1 class="name" id="nameText">Your Name</h1>
     <p class="title" id="titleText">Your Job Title</p>
-    <p class="company" id="companyText">Your Company Name</p>
   </div>
 
   <button class="save-btn" id="saveContactBtn">
@@ -297,7 +296,6 @@ const CONFIG = {
 const fullName = `${CONFIG.firstName} ${CONFIG.lastName}`.trim();
 document.getElementById('nameText').textContent = fullName || "Your Name";
 document.getElementById('titleText').textContent = CONFIG.title;
-document.getElementById('companyText').textContent = CONFIG.company;
 document.getElementById('aboutMeText').textContent = CONFIG.aboutMe;
 document.getElementById('aboutCompanyText').textContent = CONFIG.aboutCompany;
 document.title = fullName ? `${fullName} — Digital Card` : "Digital Business Card";
